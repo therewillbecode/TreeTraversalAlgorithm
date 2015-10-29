@@ -1,0 +1,18 @@
+{
+  "name": "BinaryCalculator",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "mocha": "2.3.2",
+    "chai": "3.3.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^5.8.29"
+  }
+}
