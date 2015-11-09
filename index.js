@@ -1,5 +1,4 @@
 
-
 //a constructor for adding a node to the tree
 var Node = function(value, edges){
     nodes[value] = {
