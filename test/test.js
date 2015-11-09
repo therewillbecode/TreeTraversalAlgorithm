@@ -2,48 +2,30 @@ var index = require("../index");
 var chai = require('chai');
 var expect = require('chai').expect;
 
+console.log(index.getroute)
+console.log(index.node)
 
 
-describe('should convert sum binary and output decimal', function () {
-    it('"0","0" should give 0', function () {
-        expect(index.calculate("0","0")).to.equal(0);
+describe('Works for 2 vertices in tree ', function () {
+    var nodes_2_vertices = {};
+    nodes_2_vertices['1'] = new index.node(1, 2);
+    nodes_2_vertices['2'] = new index.node(2, 3);
+    it('should return true for is Node:1 connected to Node:2', function () {
+        expect(index.getRoute(1, 2)).to.equal(true);
     });
 
-    it('"1","1" should give 2', function () {
-        expect(index.calculate("1","1")).to.equal(2);
-    });
+    it('should return false for is Node:2 connected to Node:1', function () {
+        expect(index.getRoute(2, 3)).to.equal(false);
+    });b
 
-    it('"10","10" should give 4', function () {
-        expect(index.calculate("10","10")).to.equal(4);
-    });
-
-    it('"101","100" should give 9', function () {
-        expect(index.calculate("101","100")).to.equal(9);
-    });
-
-    it('"1010101","1010101" should give 142', function () {
-        expect(index.calculate("1010101","1010101")).to.equal(170);
+    it('should return false for is Node:1 connected to Node:3 as 3 doesn\'t exist', function () {
+        expect(index.getRoute(2, 3)).to.equal(false);
     });
 });
 
-describe('should convert binary to decimal', function () {
-    it('should convert binary to decimal', function () {
-        expect(index.conv("0")).to.equal(0);
-    });
-
-    it('should convert binary to decimal', function () {
-        expect(index.conv("1")).to.equal(1);
-    });
-
-    it('100 should equal 4', function () {
-        expect(index.conv("100")).to.equal(4);
-    });
-
-    it('11111 should equal 19', function () {
-        expect(index.conv("1111111")).to.equal(127);
-    });
-
-    it('01010101001110011100000 should equal 2792672', function () {
-        expect(index.conv("01010101001110011100000")).to.equal(2792672);
+describe('zip object', function () {
+    it('item count should be', function () {
+        expect(index.get([['fred', 30], ['barney', 40]])).to.equal({ 'fred': 30, 'barney': 40 });
     });
 });
+
