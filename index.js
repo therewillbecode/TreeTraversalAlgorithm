@@ -1,4 +1,5 @@
 
+
 //a constructor for adding a node to the tree
 var Node = function(value, edges){
     nodes[value] = {
@@ -23,46 +24,37 @@ var
 
 //a and b are of type Node
 //find out if there is a route from a to b
-var getRoute = function(a, b){
-
-    // set off recursion train for each edge of starting node
-    edges =  getEdges(a);
-    console.log(edges);
-
-    for (var prop in edges){
-        if(edges){ // call if has edges recursivley
-            if(edges[prop].value==b.value) {
-                return true
-            }
-            console.log('recurse call : ' + edges[prop] + ' ' + getRoute(edges[prop], b))
-        }
-    }
-
-
-};
-
+var getRoute = function(a, xx){
 // returns True if b is edge of a
 // else returns list of edges
 // if no edges returns false
-function getEdges(a){
-var edgelist = [];
+    function getEdges(a){
+        var edgelist = [];
 // get edges for given Node
-    console.log(a);
-    for (var prop in a.edges){
-           // theEdge = a.edges[prop].value;
+        console.log(a);
+        for (var prop in a.edges){
+            // theEdge = a.edges[prop].value;
+            console.log('node is ' + a.edges[prop].value)
             edgelist.push(a.edges[prop]);
-          //  if (theEdge == b){ return true}
+            if (a.edges[prop].value == xx.value){ asd = true}
         }
 
-    if(edgelist.length == 0){   // no edges
-       // return false
-    }
-    else{
         return edgelist;
     }
-}
+    asd = false
+    // set off recursion train for each edge of starting node
+    edges =  getEdges(a);
+    //console.log(edges);
+    for (var prop in edges){
+        getEdges(edges[prop])
+        console.log(getEdges(edges[prop]))
+    }
 
-console.log(getRoute(b,g) + '4444');
+return asd
+};
+
+
+console.log(getRoute(c,g) + '4444');
+
 //console.log(nodes);
-
 
