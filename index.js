@@ -14,39 +14,34 @@ var nodes = {};
 
 var
     f = Node("f", []),
-    g = Node("g", []),
+    g = Node("g", [b]),
     h = Node("h", []),
     e = Node("e", [g]),
     d = Node("d", [f, g, h]),
     a = Node("a", [d]),
     b = Node("b", [d, e]),
     c = Node("c", [e, h]);
-
-//a and b are of type Node
+//a and b ar
 //find out if there is a route from a to b
 var getRoute = function(a, xx){
-// returns True if b is edge of a
-// else returns list of edges
-// if no edges returns false
+    //get edges
     function getEdges(a){
         var edgelist = [];
-// get edges for given Node
         console.log(a);
         for (var prop in a.edges){
-            // theEdge = a.edges[prop].value;
             console.log('node is ' + a.edges[prop].value)
             edgelist.push(a.edges[prop]);
             if (a.edges[prop].value == xx.value){ asd = true}
         }
-
         return edgelist;
     }
-    asd = false
-    // set off recursion train for each edge of starting node
-    edges =  getEdges(a);
-    //console.log(edges);
+
+    asd = false;
+
+        edges =  getEdges(a)    // get edges for first node
+
     for (var prop in edges){
-        getEdges(edges[prop])
+        getEdges(edges[prop])      // gets edges for each neighbour
         console.log(getEdges(edges[prop]))
     }
 
@@ -54,7 +49,6 @@ return asd
 };
 
 
-console.log(getRoute(c,g) + '4444');
+console.log(getRoute(c,b) + '4444');
 
-//console.log(nodes);
 
