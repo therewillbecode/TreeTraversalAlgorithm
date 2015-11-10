@@ -1,5 +1,4 @@
 
-
 //a constructor for adding a node to the tree
 var Node = function(value, edges){
     nodes[value] = {
@@ -21,17 +20,19 @@ var
     a = Node("a", [d]),
     b = Node("b", [d, e]),
     c = Node("c", [e, h]);
+    j = Node("j", [c]);
+    w = Node("w", [j, g])
+    p = Node("p", [w])
+
 //a and b ar
 //find out if there is a route from a to b
 var getRoute = function(a, xx){
     //get edges
     function getEdges(a){
         var edgelist = [];
-        console.log(a)
-        if(a.edges[0] == 'undefined'){return 'undefined'}
+        //console.log(a)
 
         for (var prop in a.edges){
-            //console.log('node is ' + a.edges[prop].value)
             edgelist.push(a.edges[prop])
 
             try {
@@ -52,20 +53,17 @@ var getRoute = function(a, xx){
     neighbourCalls(edges);
 
     function neighbourCalls(edgelist) {
-
+        console.log(edgelist);
         for (var prop in edgelist) {
-           edgeSet = getEdges(edgelist[prop]);      // gets edges for given neighbour
+            edgeSet = getEdges(edgelist[prop]);      // gets edges for given neighbour
 
             if(typeof edgeSet[0] == 'object'){     // if neighbours exist for these neighbours then call recursively
                 neighbourCalls(edgeSet)
             }
-           // console.log(getEdges(edgelist[prop]))
         }
     }
-return found
+    return found
 };
 
 
-console.log(getRoute(c,b) + '4444');
-
-
+console.log(getRoute(p ,h) + '4444');
