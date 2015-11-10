@@ -14,7 +14,7 @@ var nodes = {};
 
 var
     f = Node("f", []),
-    g = Node("g", [b]),
+    g = Node("g", []),
     h = Node("h", []),
     e = Node("e", [g]),
     d = Node("d", [f, g, h]),
@@ -27,25 +27,42 @@ var getRoute = function(a, xx){
     //get edges
     function getEdges(a){
         var edgelist = [];
-        console.log(a);
+        console.log(a)
+        if(a.edges[0] == 'undefined'){return 'undefined'}
+
         for (var prop in a.edges){
-            console.log('node is ' + a.edges[prop].value)
-            edgelist.push(a.edges[prop]);
-            if (a.edges[prop].value == xx.value){ asd = true}
+            //console.log('node is ' + a.edges[prop].value)
+            edgelist.push(a.edges[prop])
+
+            try {
+                if (a.edges[prop].value == xx.value) {
+                    found = true
+                }
+            }
+            catch(e){console.log(e)}
         }
+        if(edgelist.length == 0){ return 'undefined'}
         return edgelist;
     }
 
-    asd = false;
+    found = false;
 
-        edges =  getEdges(a)    // get edges for first node
+    edges = getEdges(a);    // get edges for first node
 
-    for (var prop in edges){
-        getEdges(edges[prop])      // gets edges for each neighbour
-        console.log(getEdges(edges[prop]))
+    neighbourCalls(edges);
+
+    function neighbourCalls(edgelist) {
+
+        for (var prop in edgelist) {
+           edgeSet = getEdges(edgelist[prop]);      // gets edges for given neighbour
+
+            if(typeof edgeSet[0] == 'object'){     // if neighbours exist for these neighbours then call recursively
+                neighbourCalls(edgeSet)
+            }
+           // console.log(getEdges(edgelist[prop]))
+        }
     }
-
-return asd
+return found
 };
 
 
