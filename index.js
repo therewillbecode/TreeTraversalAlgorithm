@@ -50,12 +50,9 @@ var getRoute = function(startNode, targetNode){
     var found = false;
     var visited = [];    // stores value of visited nodes
 
-
     var edges = getNodeEdges(startNode);   
     traverseConnectedNodes(edges);  
 
     return found
 };
 
-//test 
-console.log(getRoute(a,e));
