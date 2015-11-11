@@ -1,5 +1,3 @@
-
-
 //a constructor for adding a node to the tree
 var Node = function(value, edges){
     nodes[value] = {
@@ -12,7 +10,6 @@ var Node = function(value, edges){
 //an object containing all the nodes in the tree
 var nodes = {};
 
-
 var
     f = Node("f", []),
     g = Node("g", []),
@@ -23,31 +20,42 @@ var
     b = Node("b", [d, e]),
     c = Node("c", [e, h]);
 
-
-//a and b ar
-//find out if there is a route from a to b
-var getRoute = function(a, xx){
-
-
-
-    //console.log(nodes);
-    //get edges
-    function getEdges(a){
-        visited.push(a.value);
+var getRoute = function(startNode, targetNode){
+    function getNodeEdges(a){
         var edgelist = [];
-
+        visited.push(a.value);
         for (var prop in a.edges){
             edgelist.push(a.edges[prop]);
-
-          //  try {
-                if (a.edges[prop].value == xx.value) {
+                if (a.edges[prop].value == targetNode.value) {
                     found = true;
-         //       }
             }
-          //  catch(e){console.log(e)}
         }
         if(edgelist.length == 0){ return 'undefined'}
         return edgelist;
     }
+
+    function traverseConnectedNodes(initialEdgeList) {
+        for (var prop in initialEdgeList) {
+            thisNode = initialEdgeList[prop].value;     // current node in edge list
+            if(visited.indexOf(thisNode)>1){     //skip this node if already visited
+                break;
+            }
+            neighbourEdgeList = getNodeEdges(initialEdgeList[prop]);      // gets edges for given neighbour
+            if(typeof neighbourEdgeList[0] == 'object'){     // if neighbours exist for these neighbours then call recursively
+                traverseConnectedNodes(neighbourEdgeList)
+            }
+        }
+    }
+
+    var found = false;
     var visited = [];    // stores value of visited nodes
-    found = false;
+
+
+    var edges = getNodeEdges(startNode);   
+    traverseConnectedNodes(edges);  
+
+    return found
+};
+
+//test 
+console.log(getRoute(a,e));
